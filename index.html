@@ -60,18 +60,21 @@
         <th>Index</th>
         <th ng-click="sortData('name')">Name
             <div ng-class="getSortClass('name')"></div>
-
         </th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Street</th>
+        <th ng-click="sortData('username')">Username
+        <div ng-class="getSortClass('username')"></div></th>
+        <th ng-click="sortData('email')">Email
+        <div ng-class="getSortClass('email')"></div></th>
+        <th ng-click="sortData('address.street')">Street
+        <div ng-class="getSortClass('address.street')"></div></th>
         <th>Suite</th>
         <th>City</th>
         <th>Zipcode</th>
         <th>Сurrent location</th>
         <th>Phone</th>
         <th>Website</th>
-        <th>Company name</th>
+        <th ng-click="sortData('company.name')">Company name
+        <div ng-class="getSortClass('company.name')"></div></th>
         <th>Company catchPhrase</th>
         <th>Company bs</th>
         <th>Edit</th>
