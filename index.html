@@ -21,14 +21,29 @@
   <body ng-app="myApp" ng-controller="myController">
    
   <div class="container">
+      <div class="row">
+      <hr>
+        <div class="col-md-2 pull-right">
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="
+    margin-top: 10px">Add new</button>
+        </div>
+        <div class="col-md-2">
+              <h2>All Users</h2>
+        </div>
 
-    <hr>
-    <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add new</button>
-    <h2>All Users</h2>
-    <span class="clearfix"></span>
-    <hr>
+<!--  -->
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" style="
+    margin-top: 15px" ng-model="searchText" >
+        </div>
+      <span class="clearfix"></span>
+      <hr>
+      </div>
 
-    <div class="alert alert-info" ng-if="message">
+<!--     <span class="clearfix"></span>
+    <hr>
+ -->
+    <div class="alert alert-info" ng-if="message" ng-cloak="finishedDownoload()">
     <a href="#" class="close" ng-click="clearMessage()">&times;</a>
         {{message}}
     </div>
@@ -55,7 +70,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="data in MyData">
+      <tr ng-repeat="data in MyData | filter: search">
         <td>{{data.id}}.</td>
         <td>{{data.name}}</td>
         <td>{{data.username}}</td>

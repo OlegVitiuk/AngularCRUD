@@ -4,27 +4,21 @@ myApp.factory('DataCache', function ($cacheFactory) {
 	return $cacheFactory('dataCache', {});
 });
 
-myApp.controller("myController",function($scope, DataCache,$http){
+myApp.controller("myController",function($scope,$http,DataCache){
 
  	$scope.MyData = DataCache.get('data');
 
  	if(!$scope.MyData){
  		$http.get('https://jsonplaceholder.typicode.com/users').
              then(function(response) {
-             	DataCache.put('data', response);
              	$scope.MyData = response.data;
-             	$scope.message="Downloading has been finished!"
+             	DataCache.put('data', response.data);
             });
  	}
+
 	$scope.newUser={};
 	$scope.clickedUser={};
 	$scope.message = "";
-
-	// $scope.users=[
-	// {username: "rimon", fullName: "Manunut", email: "rimon@gmail.com"},
-	// {username: "shmim", fullName: "taminn", email: "shamim@gmail.com"},
-	// {username: "tamin", fullName: "Iqnail", email: "tamim@gmail.com"}
-	// ];
 
 	$scope.saveUser=function(){
 		$scope.users.push($scope.newUser);
@@ -46,5 +40,23 @@ myApp.controller("myController",function($scope, DataCache,$http){
 	};
 	$scope.clearMessage = function(){
 		$scope.message = "";
+	};
+
+	$scope.finishedDownoload = function(){
+		$scope.message="Downloading has been finished!"
+	}
+
+	$scope.search=function (item) {
+		if($scope.searchText == undefined){
+			return true;
+		}
+		else{
+			if(item.name.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 ||
+				item.username.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 ||
+				item.email.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1){
+				return true;
+			}
+		}
+		return false;
 	};
 });
