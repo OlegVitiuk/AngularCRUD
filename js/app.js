@@ -1,12 +1,21 @@
 var myApp = angular.module("myApp",[]);
 
-myApp.controller("myController",function($scope, $http){
+myApp.factory('DataCache', function ($cacheFactory) {
+	return $cacheFactory('dataCache', {});
+});
 
-	$http.get('https://jsonplaceholder.typicode.com/users').
+myApp.controller("myController",function($scope, DataCache,$http){
+
+ 	$scope.MyData = DataCache.get('data');
+
+ 	if(!$scope.MyData){
+ 		$http.get('https://jsonplaceholder.typicode.com/users').
              then(function(response) {
+             	DataCache.put('data', response);
              	$scope.MyData = response.data;
+             	$scope.message="Downloading has been finished!"
             });
-
+ 	}
 	$scope.newUser={};
 	$scope.clickedUser={};
 	$scope.message = "";
