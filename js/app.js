@@ -6,6 +6,7 @@ myApp.factory('DataCache', function ($cacheFactory) {
 
 myApp.controller("myController",function($scope,$http,DataCache){
 
+ 	// $scope.$emit('LOAD');
  	$scope.MyData = DataCache.get('data');
 
  	if(!$scope.MyData){
@@ -13,6 +14,7 @@ myApp.controller("myController",function($scope,$http,DataCache){
              then(function(response) {
              	$scope.MyData = response.data;
              	DataCache.put('data', response.data);
+             	// $scope.$emit('UNLOAD');
             });
  	}
 
@@ -42,10 +44,6 @@ myApp.controller("myController",function($scope,$http,DataCache){
 		$scope.message = "";
 	};
 
-	$scope.finishedDownoload = function(){
-		$scope.message="Downloading has been finished!"
-	}
-
 	$scope.search=function (item) {
 		if($scope.searchText == undefined){
 			return true;
@@ -59,4 +57,31 @@ myApp.controller("myController",function($scope,$http,DataCache){
 		}
 		return false;
 	};
+
+	// $scope.$on('LOAD',function(){
+	// 	$scope.loading = true;
+	// })
+	// $scope.$on('UNLOAD',function(){
+	// 	$scope.loading = false;
+	// })
+
+
+	$scope.sortColumn = "name";
+	$scope.reverseSort = false;
+	$scope.sortData = function(column){
+		$scope.reverseSort= ($scope.sortColumn == column) ? 
+		!$scope.reverseSort : false;
+		$scope.sortColumn = column;
+	} 
+
+	$scope.getSortClass = function(column){
+		if($scope.sortColumn==column){
+			return $scope.reverseSort ? 'arrow-down' : 'arrow-up'
+		}
+	}
+
+$( document ).ready(function() {
+     $scope.message="All users have been successfully downloaded!";
+});
+
 });
