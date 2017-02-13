@@ -32,24 +32,44 @@
     <a href="#" class="close" ng-click="clearMessage()">&times;</a>
         {{message}}
     </div>
-
-
-
-    <table class="table table-striped">
+</div>
+    <table class="table table-striped table-condensed">
     <thead>
       <tr>
         <th>Index</th>
+        <th>Name</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Street</th>
+        <th>Suite</th>
+        <th>City</th>
+        <th>Zipcode</th>
+        <th>Сurrent location</th>
+        <th>Phone</th>
+        <th>Website</th>
+        <th>Company name</th>
+        <th>Company catchPhrase</th>
+        <th>Company bs</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="user in users">
-        <td>{{$index+1}}.</td>
-        <td>{{user.username}}</td>
-        <td>{{user.email}}</td>
+      <tr ng-repeat="data in MyData">
+        <td>{{data.id}}.</td>
+        <td>{{data.name}}</td>
+        <td>{{data.username}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.address.street}}</td>
+        <td>{{data.address.suite}}</td>
+        <td>{{data.address.city}}</td>
+        <td>{{data.address.zipcode}}</td>
+        <td>{{}}</td>
+        <td>{{data.phone}}</td>
+        <td>{{data.website}}</td>
+        <td>{{data.company.name}}</td>
+        <td>{{data.company.catchPhrase}}</td>
+        <td>{{data.company.bs}}</td>
         <td>
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalEdit" ng-click="selectUser(user)">Edit
           </button>
@@ -60,7 +80,6 @@
         </td>
     </tbody>
   </table>
-  </div>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">

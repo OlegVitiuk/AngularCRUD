@@ -1,17 +1,21 @@
 var myApp = angular.module("myApp",[]);
 
-myApp.controller("myController",function($scope){
-	console.log("In my controller");
+myApp.controller("myController",function($scope, $http){
+
+	$http.get('https://jsonplaceholder.typicode.com/users').
+             then(function(response) {
+             	$scope.MyData = response.data;
+            });
 
 	$scope.newUser={};
 	$scope.clickedUser={};
 	$scope.message = "";
 
-	$scope.users=[
-	{username: "rimon", fullName: "Manunut", email: "rimon@gmail.com"},
-	{username: "shmim", fullName: "taminn", email: "shamim@gmail.com"},
-	{username: "tamin", fullName: "Iqnail", email: "tamim@gmail.com"}
-	];
+	// $scope.users=[
+	// {username: "rimon", fullName: "Manunut", email: "rimon@gmail.com"},
+	// {username: "shmim", fullName: "taminn", email: "shamim@gmail.com"},
+	// {username: "tamin", fullName: "Iqnail", email: "tamim@gmail.com"}
+	// ];
 
 	$scope.saveUser=function(){
 		$scope.users.push($scope.newUser);
@@ -34,7 +38,4 @@ myApp.controller("myController",function($scope){
 	$scope.clearMessage = function(){
 		$scope.message = "";
 	};
-
-
-
 });
