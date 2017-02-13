@@ -28,6 +28,13 @@
     <span class="clearfix"></span>
     <hr>
 
+    <div class="alert alert-info" ng-if="message">
+    <a href="#" class="close" ng-click="clearMessage()">&times;</a>
+        {{message}}
+    </div>
+
+
+
     <table class="table table-striped">
     <thead>
       <tr>
@@ -48,7 +55,7 @@
           </button>
         </td>
         <td>
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete">Delete
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete" ng-click="selectUser(user)">Delete
           </button>
         </td>
     </tbody>
@@ -157,11 +164,11 @@
         </div>
         <div class="modal-body">
            <strong style="color: red;">
-             You are going to delete...
+             You are going to delete {{clickedUser.fullName}} ...
            </strong> 
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteUser()">Yes</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
         </div>
       </div>
