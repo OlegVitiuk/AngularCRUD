@@ -22,9 +22,9 @@
   <body ng-app="myApp" ng-controller="myController">
 
 
-<!-- <div class="alert alert-info" ng-show="loading"> 
+<div class="alert alert-info" ng-show="loading"> 
   Loading...
-</div> -->
+</div>
 
   <div class="container">
       <div class="row">
@@ -37,7 +37,6 @@
               <h2>All Users</h2>
         </div>
 
-<!--  -->
         <div class="col-md-8">
           <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" style="
     margin-top: 15px" ng-model="searchText" >
@@ -46,9 +45,6 @@
       <hr>
       </div>
 
-<!--     <span class="clearfix"></span>
-    <hr>
- -->
     <div class="alert alert-info" ng-if="message">
     <a href="#" class="close" ng-click="clearMessage()">&times;</a>
         {{message}}
@@ -91,7 +87,7 @@
         <td>{{data.address.suite}}</td>
         <td>{{data.address.city}}</td>
         <td>{{data.address.zipcode}}</td>
-        <td>{{}}</td>
+        <td get-distance="data">{{distance+" km"}}</td>
         <td>{{data.phone}}</td>
         <td>{{data.website}}</td>
         <td>{{data.company.name}}</td>
