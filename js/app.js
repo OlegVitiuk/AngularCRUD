@@ -42,7 +42,7 @@ myApp.controller("myController",function($scope,$http,DataCache){
 	};
 
 	$scope.deleteUser=function(){
-		$scope.users.splice($scope.users.indexOf($scope.clickedUser),1);
+		$scope.MyData.splice($scope.MyData.indexOf($scope.clickedUser),1);
 		$scope.message="User Deleted Successfully!"
 	};
 	$scope.clearMessage = function(){
