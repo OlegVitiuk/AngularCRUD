@@ -17,7 +17,6 @@ myApp.controller("myController",function($scope,$http,DataCache){
              	$scope.$emit('UNLOAD');
             });
  	}
-
 	$scope.newUser={};
 	$scope.clickedUser={};
 	$scope.message = "";
@@ -142,6 +141,16 @@ myApp.controller("myController",function($scope,$http,DataCache){
 		return maxId+1;
 	};
 
+
+	$scope.isUniq = function(){
+		$scope.isDuplicate=false;
+		var arrLength = $scope.MyData.length;
+		for (var i = 0; i < arrLength; i++) {
+		 if ($scope.MyData[i].username == $scope.newUser.username){
+		 	$scope.isDuplicate =true;
+		}
+		}
+	};
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
 });
@@ -171,5 +180,4 @@ myApp.directive("getDistance",function(){
 		scope.distance = parseFloat(distanceInKilometres.toFixed(2))
 	}
 });
-
 
