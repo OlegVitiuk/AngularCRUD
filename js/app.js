@@ -22,7 +22,8 @@ myApp.controller("myController",function($scope,$http,DataCache){
 	$scope.clickedUser={};
 	$scope.message = "";
 	$scope.distance = 0;
-	$scope.myLocation = { lat: 50.448140, lng: 30.452775 }
+	$scope.myLocation = { lat: 50.448140, lng: 30.452775 };
+	$scope.defaultLocation = { lat: 49.231102 , lng: 28.457946}; // default location whether user do not write a coordinates.Location is Vinnitsya, Pirogova 11 street
 
 	$scope.saveUser=function(){
 		$scope.newUser.id=$scope.makeUniqID();
@@ -158,8 +159,13 @@ myApp.directive("getDistance",function(){
 		catch(e){
 
 			// Lat Lng is mandatory!
-			var distanceInKilometres = scope.haversineDistance(scope.getLocation(),
+			try{
+			     distanceInKilometres = scope.haversineDistance(scope.getLocation(),
 				{ lat: scope.MyData.address.geo.lat, lng: scope.MyData.address.geo.lng})/1000;
+			}
+			catch(e){
+				distanceInKilometres=scope.haversineDistance(scope.getLocation(),scope.defaultLocation)/1000;
+			}
 		}
 
 		scope.distance = parseFloat(distanceInKilometres.toFixed(2))
