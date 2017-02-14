@@ -180,6 +180,7 @@ myApp.controller("myController",function($scope,$http,DataCache){
 			}
 		}
 	};
+
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
 });
