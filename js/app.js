@@ -142,14 +142,14 @@ myApp.controller("myController",function($scope,$http,DataCache){
 	};
 
 
-	$scope.isUniq = function(){
+	$scope.isUniq = function(field){
+		console.log(field);
 		$scope.isDuplicate=false;
 		var arrLength = $scope.MyData.length;
 		for (var i = 0; i < arrLength; i++) {
-		 if ($scope.MyData[i].username == $scope.newUser.username){
-		 	$scope.isDuplicate =true;
-		}
-		}
+					 if ($scope.MyData[i][field] == $scope.newUser[field]){
+					 	$scope.isDuplicate =true;
+					}}
 	};
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
