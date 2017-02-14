@@ -25,9 +25,12 @@ myApp.controller("myController",function($scope,$http,DataCache){
 	$scope.myLocation = { lat: 50.448140, lng: 30.452775 }
 
 	$scope.saveUser=function(){
-		$scope.users.push($scope.newUser);
+		$scope.newUser.id=$scope.makeUniqID();
+		// $scope.newUser.geo={lat: 60.448140, lng: 40.452775};
+		$scope.MyData.push($scope.newUser);
 		$scope.newUser={};
 		$scope.message="New user Added Successfully!"
+		console.log($scope.newUser);
 	};
 
 	$scope.selectUser= function(user){
@@ -124,6 +127,20 @@ myApp.controller("myController",function($scope,$http,DataCache){
 			document.execCommand('copy');
 		};
 
+
+	$scope.makeUniqID=function(){
+		 var maxId = 0;
+
+		var arrLength = $scope.MyData.length;
+		for (var i = 0; i < arrLength; i++) {
+		  // Найти максимальное значение на оси X
+		 if ($scope.MyData[i].id > maxId){
+		 maxId = $scope.MyData[i].id;
+		}
+		}
+		return maxId+1;
+	};
+
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
 });
@@ -135,8 +152,18 @@ myApp.directive("getDistance",function(){
 
 		var atrValue=attributes["getDistance"];
 		var data = scope[atrValue];
-		var distanceInKilometres = scope.haversineDistance(scope.getLocation(),data.address.geo)/1000;
+		try{
+			var distanceInKilometres = scope.haversineDistance(scope.getLocation(),data.address.geo)/1000;
+		}
+		catch(e){
+
+			// Lat Lng is mandatory!
+			var distanceInKilometres = scope.haversineDistance(scope.getLocation(),
+				{ lat: scope.MyData.address.geo.lat, lng: scope.MyData.address.geo.lng})/1000;
+		}
 
 		scope.distance = parseFloat(distanceInKilometres.toFixed(2))
 	}
 });
+
+
