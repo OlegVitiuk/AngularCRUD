@@ -143,13 +143,42 @@ myApp.controller("myController",function($scope,$http,DataCache){
 
 
 	$scope.isUniq = function(field){
-		console.log(field);
-		$scope.isDuplicate=false;
-		var arrLength = $scope.MyData.length;
-		for (var i = 0; i < arrLength; i++) {
-					 if ($scope.MyData[i][field] == $scope.newUser[field]){
-					 	$scope.isDuplicate =true;
-					}}
+		// $scope.isDuplicate=false;
+		// var arrLength = $scope.MyData.length;
+		// for (var i = 0; i < arrLength; i++) {
+		// 			 if ($scope.MyData[i][field] == $scope.newUser[field]){
+		// 			 	$scope.isDuplicate =true;
+		// 			}}
+
+		switch(field){
+			case 'username':{
+				$scope.isDuplicateUsername=false;
+				var arrLength = $scope.MyData.length;
+				for (var i = 0; i < arrLength; i++) {
+							 if ($scope.MyData[i][field] == $scope.newUser[field]){
+							 	$scope.isDuplicateUsername =true;
+							}}
+							break;
+			}
+			case 'email':{
+				$scope.isDuplicateEmail=false;
+				var arrLength = $scope.MyData.length;
+				for (var i = 0; i < arrLength; i++) {
+							 if ($scope.MyData[i][field] == $scope.newUser[field]){
+							 	$scope.isDuplicateEmail =true;
+							}}
+							break;
+			}
+			case 'company.name':{
+				$scope.isDuplicateCompanyName=false;
+				var arrLength = $scope.MyData.length;
+				for (var i = 0; i < arrLength; i++) {
+							 if ($scope.MyData[i].company.name == $scope.newUser.company.name){
+							 	$scope.isDuplicateCompanyName =true;
+							}}
+							break;
+			}
+		}
 	};
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
