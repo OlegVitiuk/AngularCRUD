@@ -116,6 +116,14 @@ myApp.controller("myController",function($scope,$http,DataCache){
 		  return R * c //get distance in meters!
 	}
 
+	$scope.copy = function(id){
+			var text = document.getElementById(id);
+			var range = document.createRange();
+			range.selectNode(text);
+			window.getSelection().addRange(range);
+			document.execCommand('copy');
+		};
+
 $( document ).ready(function() {
      $scope.message="All users have been successfully downloaded!";
 });

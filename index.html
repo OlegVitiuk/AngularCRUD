@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>AngularJS Task have been produced by Oleg Vitiuk</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -82,7 +82,13 @@
         <td>{{data.id}}.</td>
         <td>{{data.name}}</td>
         <td>{{data.username}}</td>
-        <td>{{data.email}}</td>
+        <td id='{{data.id}}'>{{data.email}}
+        <br/>
+        <a href="#" class="btn btn-success btn-lg" ng-click = "copy(data.id)">
+          <span class="glyphicon glyphicon-copy"></span> 
+        </a>
+        </td>
+                
         <td>{{data.address.street}}</td>
         <td>{{data.address.suite}}</td>
         <td>{{data.address.city}}</td>
@@ -94,11 +100,11 @@
         <td>{{data.company.catchPhrase}}</td>
         <td>{{data.company.bs}}</td>
         <td>
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalEdit" ng-click="selectUser(user)">Edit
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalEdit" ng-click="selectUser(data)">Edit
           </button>
         </td>
         <td>
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete" ng-click="selectUser(user)">Delete
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete" ng-click="selectUser(data)">Delete
           </button>
         </td>
     </tbody>
